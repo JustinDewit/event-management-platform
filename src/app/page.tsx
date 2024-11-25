@@ -1,9 +1,16 @@
-import { dbConnect } from "./lib/dbConnect";
-import Event from "./models/Event";
-
 export default async function Home() {
-  await dbConnect();
-  const events = await Event.find({});
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/getEvents`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch events");
+  }
+
+  const events = await response.json();
 
   return (
     <div className="min-h-screen p-8">
