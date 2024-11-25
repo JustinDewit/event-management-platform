@@ -6,6 +6,7 @@ import CreateEventModal from "./components/CreateEventModal";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [events, setEvents] = useState<IEvent[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchEvents = async () => {
     const response = await fetch(
@@ -27,6 +28,14 @@ export default function Home() {
     fetchEvents();
   }, []);
 
+  // Filter events based on search query
+  const filteredEvents = events.filter(
+    (event) =>
+      event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen p-8">
       <main className="container mx-auto">
@@ -40,8 +49,19 @@ export default function Home() {
           </button>
         </div>
 
+        {/* Search Bar */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Search events..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {events.map((event: IEvent) => (
+          {filteredEvents.map((event: IEvent) => (
             <div
               key={event._id}
               className="p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md cursor-pointer transition-shadow"
