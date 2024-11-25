@@ -1,3 +1,5 @@
+import { IEvent } from "./models/Event";
+
 export default async function Home() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/getEvents`,
@@ -23,7 +25,7 @@ export default async function Home() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => (
+          {events.map((event: IEvent) => (
             <div
               key={event._id}
               className="p-6 rounded-lg border border-gray-200 shadow-sm"
