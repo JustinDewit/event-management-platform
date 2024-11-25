@@ -43,6 +43,7 @@ export default function EventDetails() {
         <div className="bg-white rounded-lg shadow-lg p-8">
           <h1 className="text-3xl font-bold mb-4">{event.name}</h1>
           <p className="text-gray-600 mb-6">{event.description}</p>
+          <p className="text-gray-600 mb-6">{event.detailedDescription}</p>
 
           <div className="space-y-4">
             <div className="flex items-center">

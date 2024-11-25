@@ -15,6 +15,7 @@ export default function CreateEventModal({
   const [formData, setFormData] = useState({
     name: "",
     description: "",
+    detailedDescription: "",
     location: "",
     date: "",
     time: "",
@@ -41,6 +42,7 @@ export default function CreateEventModal({
       setFormData({
         name: "",
         description: "",
+        detailedDescription: "",
         location: "",
         date: "",
         time: "",
@@ -91,6 +93,24 @@ export default function CreateEventModal({
                 value={formData.description}
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })
+                }
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
+                rows={3}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Detailed Description
+              </label>
+              <textarea
+                required
+                value={formData.detailedDescription}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    detailedDescription: e.target.value,
+                  })
                 }
                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
                 rows={3}
