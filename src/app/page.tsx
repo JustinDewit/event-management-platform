@@ -44,7 +44,8 @@ export default function Home() {
           {events.map((event: IEvent) => (
             <div
               key={event._id}
-              className="p-6 rounded-lg border border-gray-200 shadow-sm"
+              className="p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md cursor-pointer transition-shadow"
+              onClick={() => (window.location.href = `/events/${event._id}`)}
             >
               <h2 className="text-xl font-semibold mb-2">{event.name}</h2>
               <p className="text-gray-600 mb-2">{event.description}</p>
