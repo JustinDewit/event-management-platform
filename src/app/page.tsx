@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IEvent } from "./models/Event";
 import CreateEventModal from "./components/CreateEventModal";
 
@@ -22,6 +22,10 @@ export default function Home() {
     const newEvents = await response.json();
     setEvents(newEvents);
   };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <div className="min-h-screen p-8">
