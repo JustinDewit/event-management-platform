@@ -6,10 +6,10 @@
  * 2. Run: node resetDatabase.js
  */
 
-// Load environment variables
-require("dotenv").config({ path: ".env.local" }); // Adjust the path if necessary
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
-const mongoose = require("mongoose");
+dotenv.config({ path: ".env.local" });
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -22,10 +22,8 @@ if (!MONGODB_URI) {
 
 async function resetDatabase() {
   try {
-    // Connect to MongoDB
     await mongoose.connect(MONGODB_URI);
 
-    // Define the Event schema
     const eventSchema = new mongoose.Schema({
       name: String,
       description: String,
@@ -36,10 +34,8 @@ async function resetDatabase() {
 
     const Event = mongoose.model("Event", eventSchema);
 
-    // Delete all existing events
     await Event.deleteMany({});
 
-    // Predefined events
     const events = [
       {
         name: "Jazz in the Park",
@@ -75,7 +71,6 @@ async function resetDatabase() {
       },
     ];
 
-    // Insert predefined events into the database
     await Event.insertMany(events);
 
     console.log("Database has been reset and populated with default events.");
