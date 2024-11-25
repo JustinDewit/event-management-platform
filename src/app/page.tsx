@@ -8,7 +8,12 @@ export default async function Home() {
   return (
     <div className="min-h-screen p-8">
       <main className="container mx-auto">
-        <h1 className="text-2xl font-bold mb-8">Event Management Platform</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-bold">Event Management Platform</h1>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+            Create New Event
+          </button>
+        </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {events.map((event) => (
